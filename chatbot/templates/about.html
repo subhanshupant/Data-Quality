@@ -1,0 +1,308 @@
+<!doctype html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 20px;
+    }
+
+    .chatbox {
+      background-color: #f0f0f0;
+      border-radius: 10px;
+      max-width: 400px;
+      margin: 0 auto;
+      padding: 20px;
+    }
+
+    .user-message {
+      background-color: #f9f9f9;
+      padding: 10px;
+      margin-bottom: 10px;
+      border-radius: 5px;
+    }
+
+    .bot-message {
+      background-color: #e5f1fb;
+      padding: 10px;
+      margin-bottom: 10px;
+      border-radius: 5px;
+    }
+
+    .chat-input {
+      width: 100%;
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      margin-top: 10px;
+    }
+
+    .send-button {
+      display: block;
+      width: 150px;
+      padding: 10px;
+      background-color: #4CAF50;
+      color: white;
+      text-align: center;
+      text-decoration: none;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    .file-input {
+      position: relative;
+      display: inline-block;
+      overflow: hidden;
+      padding: 10px;
+      background-color: #f0f0f0;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      cursor: pointer;
+      margin-right: 10px;
+      height: 50px;
+    }
+
+    .file-input input[type="file"] {
+      position: absolute;
+      left: 0;
+      top: 0;
+      opacity: 0;
+      cursor: pointer;
+    }
+
+    .file-input-label {
+      display: inline-block;
+      text-align: center;
+      vertical-align: middle;
+      margin-left: 10px;
+      font-size: 14px;
+    }
+
+    #chat-log {
+      border: 1px solid;
+      padding: 15px;
+      border-radius: 10px;
+      margin-top: 20px;
+      min-height: 300px;
+    }
+
+    .chat-bubble {
+      margin-bottom: 10px;
+      border: 1px solid;
+      padding: 10px;
+      border-radius: 10px;
+    }
+
+    /* footer {
+      position: fixed;
+      bottom: 0;
+    } */
+
+    section {
+      max-height: calc(100vh - 200px);
+      overflow: auto;
+    }
+  </style>
+</head>
+
+<body>
+  <header class="text-gray-600 body-font">
+    <div class="container mx-auto flex flex-wrap p-5 flex-col md:flex-row items-center">
+      <a class="flex title-font font-medium items-center text-gray-900 mb-4 md:mb-0">
+        <svg xmlns="https://hackathon.factspanapps.com/assets/fact01.png" fill="none" stroke="currentColor"
+          stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+          class="w-10 h-10 text-white p-2 bg-indigo-500 rounded-full" viewBox="0 0 24 24">
+          <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"></path>
+        </svg>
+        <span class="ml-3 text-xl">Data Guardian</span>
+      </a>
+      <nav class="md:ml-auto flex flex-wrap items-center text-base justify-center">
+        <a class="mr-5 hover:text-gray-900" href="/">Home</a>
+        <a class="mr-5 hover:text-gray-900" href="/templates/about">About</a>
+        <!-- <a class="mr-5 hover:text-gray-900" href="/templates/information">Information</a> -->
+        <a class="mr-5 hover:text-gray-900" href="/templates/chatbot">Chatbot</a>
+      </nav>
+    </div>
+  </header>
+
+<hr>
+
+  <section class="text-gray-600 body-font">
+    <div class="container px-5 py-24 mx-auto">
+      <div class="flex items-center lg:w-3/5 mx-auto border-b pb-10 mb-10 border-gray-200 sm:flex-row flex-col">
+        <div
+          class="sm:w-32 sm:h-32 h-20 w-20 sm:mr-10 inline-flex items-center justify-center rounded-full bg-indigo-100 text-indigo-500 flex-shrink-0">
+          <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+            class="sm:w-16 sm:h-16 w-10 h-10" viewBox="0 0 24 24">
+            <path d="M22 12h-4l-3 9L9 3l-3 9H2"></path>
+          </svg>
+        </div>
+        <div class="flex-grow sm:text-left text-center mt-6 sm:mt-0">
+          <h1 class="text-gray-900 text-lg title-font font-medium mb-2">Understanding of the Problem Statement and
+            Solution offered</h1>
+          <p class="leading-relaxed text-base">The problem statement revolves around the need to monitor and evaluate
+            the quality of data in retail systems and databases. This is a common challenge faced by organizations that
+            rely on data-driven insights for decision-making. Poor data quality can lead to incorrect analyses, flawed
+            decision-making, and ultimately, negative business outcomes.
+            The solution offered, a data quality monitoring chatbot powered by ChatGPT, is highly relevant and accurate
+            in addressing this problem. ChatGPT is a powerful language model that can understand and generate human-like
+            text, making it suitable for conversational applications. By leveraging ChatGPT's capabilities, the chatbot
+            can effectively examine data attributes, identify potential anomalies or issues, and generate alerts when
+            data quality problems are detected.
+            The accuracy of the solution lies in its ability to perform comprehensive checks for data completeness,
+            consistency, and adherence to predefined rules. It can accurately identify missing values, inconsistent
+            formatting, and other data quality issues. The chatbot acts as an intelligent assistant, providing insights
+            and alerts to stakeholders, enabling proactive data governance, and facilitating timely corrective actions.
+          </p>
+          <!-- <a class="mt-3 text-indigo-500 inline-flex items-center">Learn More -->
+          <!-- <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="w-4 h-4 ml-2" viewBox="0 0 24 24">
+              <path d="M5 12h14M12 5l7 7-7 7"></path>
+            </svg> -->
+          <!-- </a> -->
+        </div>
+      </div>
+      <div class="flex items-center lg:w-3/5 mx-auto border-b pb-10 mb-10 border-gray-200 sm:flex-row flex-col">
+        <div class="flex-grow sm:text-left text-center mt-6 sm:mt-0">
+          <h1 class="text-gray-900 text-lg title-font font-medium mb-2">Business Benefit</h1>
+          <p class="leading-relaxed text-base">
+          <ul style="list-style-type: circle"></ul>
+          <li> Improved Data Accuracy: By proactively monitoring data quality, the chatbot helps identify and address
+            issues such as missing values, inconsistent formatting, and outliers. This leads to improved data accuracy
+            and reliability, which forms the foundation for making informed business decisions.</li>
+          <li>Enhanced Decision-Making: Reliable data is crucial for effective decision-making. The chatbot's ability
+            to identify data quality problems allows stakeholders to have a clear understanding of the limitations and
+            potential biases in the data. This empowers decision-makers to make more accurate and informed choices,
+            leading to better business outcomes.</li>
+          <li>Time and Cost Savings: Manual data quality checks can be time-consuming and resource-intensive. The
+            chatbot automates the process, reducing the need for manual intervention. This saves time and resources
+            that can be redirected towards other critical tasks, improving overall operational efficiency and
+            cost-effectiveness.</li>
+          <li>Proactive Data Governance: The chatbot acts as a proactive data governance tool by continuously
+            monitoring data quality and generating alerts when issues arise. This enables organizations to take prompt
+            corrective actions, preventing the propagation of poor data quality and minimizing the potential negative
+            impacts on downstream processes and analyses.</li>
+          <li>Increased Stakeholder Engagement: The chatbot serves as an interactive and accessible interface for
+            stakeholders to engage with data quality insights. It provides a user-friendly experience where
+            stakeholders can interact with the chatbot, receive alerts, and gain insights into the quality of the
+            data. This fosters a data-driven culture and encourages stakeholders to actively participate in data
+            governance initiatives.</li>
+          </ul>
+          </p>
+          <!-- <a class="mt-3 text-indigo-500 inline-flex items-center">Learn More
+            <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="w-4 h-4 ml-2" viewBox="0 0 24 24">
+              <path d="M5 12h14M12 5l7 7-7 7"></path>
+            </svg>
+          </a> -->
+        </div>
+        <div
+          class="sm:w-32 sm:order-none order-first sm:h-32 h-20 w-20 sm:ml-10 inline-flex items-center justify-center rounded-full bg-indigo-100 text-indigo-500 flex-shrink-0">
+          <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+            class="sm:w-16 sm:h-16 w-10 h-10" viewBox="0 0 24 24">
+            <circle cx="6" cy="6" r="3"></circle>
+            <circle cx="6" cy="18" r="3"></circle>
+            <path d="M20 4L8.12 15.88M14.47 14.48L20 20M8.12 8.12L12 12"></path>
+          </svg>
+        </div>
+      </div>
+      <div class="flex items-center lg:w-3/5 mx-auto sm:flex-row flex-col">
+        <div
+          class="sm:w-32 sm:h-32 h-20 w-20 sm:mr-10 inline-flex items-center justify-center rounded-full bg-indigo-100 text-indigo-500 flex-shrink-0">
+          <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+            class="sm:w-16 sm:h-16 w-10 h-10" viewBox="0 0 24 24">
+            <path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"></path>
+            <circle cx="12" cy="7" r="4"></circle>
+          </svg>
+        </div>
+        <div class="flex-grow sm:text-left text-center mt-6 sm:mt-0">
+          <h1 class="text-gray-900 text-lg title-font font-medium mb-2">Usability & Completeness</h1>
+          <p class="leading-relaxed text-base">
+          <ul style="list-style-type: circle">
+            <li> User Interface: The prototype could benefit from a more intuitive and user-friendly interface. Consider
+              improving the design and layout of the chatbot interface to make it visually appealing and easy to
+              navigate. Provide clear instructions and feedback to guide users in interacting with the chatbot
+              effectively.
+            </li>
+            <li>Error Handling: Implement better error handling mechanisms to provide meaningful error messages and
+              handle unexpected scenarios. For example, when uploading a file, if the file format is not supported or if
+              there are errors in reading the file, provide clear and informative error messages to guide users.
+            </li>
+            <li>Comprehensive Data Quality Checks: The prototype currently focuses on completeness, consistency, and
+              formatting checks. Consider expanding the range of data quality checks to cover other important aspects
+              such as uniqueness, validity, and referential integrity. This will provide a more comprehensive evaluation
+              of the data quality.
+            </li>
+            <li>Feedback and Reporting: Enhance the chatbot's capability to provide detailed feedback and reporting on
+              data quality issues. Instead of just generating alerts, consider providing insights and suggestions on how
+              to address the identified data quality problems. This will empower users to take appropriate actions to
+              improve data quality.</li>
+            <li>Performance Optimization: Depending on the size and complexity of the dataset, the prototype's
+              performance may need optimization. Consider implementing strategies to handle large datasets efficiently,
+              such as performing checks on smaller subsets of data or implementing parallel processing techniques.
+            </li>
+          </ul>
+          </p>
+          <!-- <a class="mt-3 text-indigo-500 inline-flex items-center">Learn More
+            <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="w-4 h-4 ml-2" viewBox="0 0 24 24">
+              <path d="M5 12h14M12 5l7 7-7 7"></path>
+            </svg>
+          </a> -->
+        </div>
+      </div>
+     </div>
+  </section>
+
+
+  <hr>
+  <footer class="text-gray-600 body-font">
+    <div class="container px-5 py-8 mx-auto flex items-center sm:flex-row flex-col">
+      <a class="flex title-font font-medium items-center md:justify-start justify-center text-gray-900">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-linecap="round"
+          stroke-linejoin="round" stroke-width="2" class="w-10 h-10 text-white p-2 bg-indigo-500 rounded-full"
+          viewBox="0 0 24 24">
+          <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"></path>
+        </svg>
+        <span class="ml-3 text-xl">DataGuardian</span>
+      </a>
+      <p class="text-sm text-gray-500 sm:ml-4 sm:pl-4 sm:border-l-2 sm:border-gray-200 sm:py-2 sm:mt-0 mt-4">© 2023
+        Facts on hacks —
+        <a href="https://www.factspan.com/" class="text-gray-600 ml-1" rel="noopener noreferrer"
+          target="_blank">@Factspan</a>
+      </p>
+      <span class="inline-flex sm:ml-auto sm:mt-0 mt-4 justify-center sm:justify-start">
+        <a class="text-gray-500" href="https://www.facebook.com/factspan/" target="_blank">
+          <svg fill="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="w-5 h-5"
+            viewBox="0 0 24 24">
+            <path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"></path>
+          </svg>
+        </a>
+        <a class="ml-3 text-gray-500" href = "https://twitter.com/factspanconnect?lang=en" target="_blank">
+          <svg fill="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="w-5 h-5"
+            viewBox="0 0 24 24">
+            <path
+              d="M23 3a10.9 10.9 0 01-3.14 1.53 4.48 4.48 0 00-7.86 3v1A10.66 10.66 0 013 4s-4 9 5 13a11.64 11.64 0 01-7 2c9 5 20 0 20-11.5a4.5 4.5 0 00-.08-.83A7.72 7.72 0 0023 3z">
+            </path>
+          </svg>
+        </a>
+        
+        <a class="ml-3 text-gray-500" href="https://in.linkedin.com/company/factspan-analytics-private-limited" target="blank">
+          <svg fill="currentColor" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="0"
+            class="w-5 h-5" viewBox="0 0 24 24">
+            <path stroke="none"
+              d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6zM2 9h4v12H2z"></path>
+            <circle cx="4" cy="4" r="2" stroke="none"></circle>
+          </svg>
+        </a>
+      </span>
+    </div>
+  </footer>
+
+
+</body>
+
+</html>

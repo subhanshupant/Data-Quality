@@ -1,0 +1,264 @@
+<!doctype html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 20px;
+    }
+
+    .chatbox {
+      background-color: rgb(237 233 254);
+      border-radius: 10px;
+      max-width: 400px;
+      margin: 0 auto;
+      padding: 20px;
+    }
+
+    .user-message {
+      background-color: #f9f9f9;
+      padding: 10px;
+      margin-bottom: 10px;
+      border-radius: 5px;
+    }
+
+    .bot-message {
+      background-color: #e5f1fb;
+      padding: 10px;
+      margin-bottom: 10px;
+      border-radius: 5px;
+    }
+
+    .chat-input {
+      width: 100%;
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      margin-top: 10px;
+    }
+
+    .send-button {
+      display: block;
+      width: 150px;
+      padding: 10px;
+      background-color: rgb(99 102 241);
+      color: white;
+      text-align: center;
+      text-decoration: none;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+    .file-input {
+      position: relative;
+      display: inline-block;
+      overflow: hidden;
+      padding: 10px;
+      background-color: #f0f0f0;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      cursor: pointer;
+      margin-right: 10px;
+      height: 50px;
+    }
+
+    .file-input input[type="file"] {
+      position: absolute;
+      left: 0;
+      top: 0;
+      opacity: 0;
+      cursor: pointer;
+    }
+
+    .file-input-label {
+      display: inline-block;
+      text-align: center;
+      vertical-align: middle;
+      margin-left: 10px;
+      font-size: 14px;
+    }
+    #chat-log{
+      border: 1px solid;
+      padding: 15px;
+      border-radius: 10px;
+      margin-top: 20px;
+      min-height: 300px;
+    }
+    .chat-bubble{
+      margin-bottom: 10px;
+      border: 1px solid;
+      padding: 10px;
+      border-radius: 10px;
+    }
+    footer {
+      position: fixed;
+      bottom: 0;
+    }
+    section {
+      max-height: calc(100vh - 200px);
+      overflow: auto;
+    }
+  </style>
+</head>
+
+<body>
+  <header class="text-gray-600 body-font">
+    <div class="container mx-auto flex flex-wrap p-5 flex-col md:flex-row items-center">
+      <a class="flex title-font font-medium items-center text-gray-900 mb-4 md:mb-0">
+        <svg xmlns="https://hackathon.factspanapps.com/assets/fact01.png" fill="none" stroke="currentColor"
+          stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+          class="w-10 h-10 text-white p-2 bg-indigo-500 rounded-full" viewBox="0 0 24 24">
+          <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"></path>
+        </svg>
+        <span class="ml-3 text-xl">Data Guardian</span>
+      </a>
+      <nav class="md:ml-auto flex flex-wrap items-center text-base justify-center">
+        <a class="mr-5 hover:text-gray-900" href="/">Home</a>
+        <a class="mr-5 hover:text-gray-900" href="/templates/about">About</a>
+        <!-- <a class="mr-5 hover:text-gray-900"href="/templates/information">Information</a> -->
+        <a class="mr-5 hover:text-gray-900" href="/templates/chatbot">Chatbot</a>
+      </nav>
+    </div>
+  </header>
+  <hr>
+  
+  <section class="text-gray-600 body-font">
+    <div class="container mx-auto flex px-5 py-24 flex-col items-flex-start">
+      <h1 class="title-font sm:text-4xl text-3xl mb-4 font-medium text-gray-900">Chatbot</h1>
+      <div class="flex mb-6 file-input">
+        <input type="file" id="file-select" name="file" class=""/>
+        <label for="file-input" class="file-input-label" id="file-input-label">Select a File</label>
+        <span class="file-name" id="file-name"></span>
+      </div>
+      <button id="upload-button" class="send-button">Upload File</button>
+      <div class="" id="chat-container" style="display: none;">
+        <div id="chat-log" style="display: none;"></div>
+        <input type="text" id="user-input" class="chat-input" placeholder="Enter your message">
+        <button id="send-button" class="send-button mt-6">Chat</button>
+      </div>
+    </div>
+    </div>
+  </section>
+</hr>
+
+  <footer class="text-gray-600 body-font">
+    <div class="container px-5 py-8 mx-auto flex items-center sm:flex-row flex-col">
+      <a class="flex title-font font-medium items-center md:justify-start justify-center text-gray-900">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-linecap="round"
+          stroke-linejoin="round" stroke-width="2" class="w-10 h-10 text-white p-2 bg-indigo-500 rounded-full"
+          viewBox="0 0 24 24">
+          <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"></path>
+        </svg>
+        <span class="ml-3 text-xl">DataGuardian</span>
+      </a>
+      <p class="text-sm text-gray-500 sm:ml-4 sm:pl-4 sm:border-l-2 sm:border-gray-200 sm:py-2 sm:mt-0 mt-4">© 2023
+        Facts on hacks —
+        <a href="https://www.factspan.com/" class="text-gray-600 ml-1" rel="noopener noreferrer"
+          target="_blank">@Factspan</a>
+      </p>
+      <span class="inline-flex sm:ml-auto sm:mt-0 mt-4 justify-center sm:justify-start">
+        <a class="text-gray-500" href="https://www.facebook.com/factspan/" target="_blank">
+          <svg fill="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="w-5 h-5"
+            viewBox="0 0 24 24">
+            <path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"></path>
+          </svg>
+        </a>
+        <a class="ml-3 text-gray-500" href = "https://twitter.com/factspanconnect?lang=en" target="_blank">
+          <svg fill="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="w-5 h-5"
+            viewBox="0 0 24 24">
+            <path
+              d="M23 3a10.9 10.9 0 01-3.14 1.53 4.48 4.48 0 00-7.86 3v1A10.66 10.66 0 013 4s-4 9 5 13a11.64 11.64 0 01-7 2c9 5 20 0 20-11.5a4.5 4.5 0 00-.08-.83A7.72 7.72 0 0023 3z">
+            </path>
+          </svg>
+        </a>
+        
+        <a class="ml-3 text-gray-500" href="https://in.linkedin.com/company/factspan-analytics-private-limited" target="blank">
+          <svg fill="currentColor" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="0"
+            class="w-5 h-5" viewBox="0 0 24 24">
+            <path stroke="none"
+              d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6zM2 9h4v12H2z"></path>
+            <circle cx="4" cy="4" r="2" stroke="none"></circle>
+          </svg>
+        </a>
+      </span>
+    </div>
+  </footer>
+
+
+</body>
+<script>
+  // Send the user input to the Flask app and display the response
+  function sendUserInput() {
+    var userInput = document.getElementById('user-input').value;
+    var chatLog = document.getElementById('chat-log');
+
+    // Create a new XMLHttpRequest object
+    var xhr = new XMLHttpRequest();
+
+    // Define the request type, URL, and async flag
+    xhr.open('POST', '/chatbot', true);
+
+    // Set the content type header for the request
+    xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+
+    // Define the function to handle the response
+    xhr.onreadystatechange = function () {
+      if (xhr.readyState === 4 && xhr.status === 200) {
+        var response = xhr.responseText;
+        document.getElementById("chat-log").style.display = "block";
+        var chatBubble = document.createElement('div');
+        chatBubble.classList.add('chat-bubble');
+        chatBubble.innerHTML = '<strong>You:</strong> ' + userInput + '<br><strong>Chatbot:</strong> ' + response + '<br>';
+        chatLog.appendChild(chatBubble);
+        document.getElementById('user-input').value = '';
+      }
+    };
+
+    // Send the request with the user input as the payload
+    xhr.send('user-input=' + encodeURIComponent(userInput));
+  }
+
+  function sendUserInputFile() {
+    var fileInput = document.getElementById('file-select');
+
+    var myFormData = new FormData();
+    myFormData.append('file', fileInput.files[0]);
+
+    // Create a new XMLHttpRequest object
+    var xhr = new XMLHttpRequest();
+
+    // Define the request type, URL, and async flag
+    xhr.open('POST', '/upload', true);
+
+    // Set the content type header for the request
+    // xhr.setRequestHeader('Content-Type', 'multipart/form-data');
+
+    // Define the function to handle the response
+
+    // Send the request with the user input as the payload
+    xhr.send(myFormData);
+    xhr.onreadystatechange = function () {
+      if (xhr.status === 200) {
+        document.getElementById("chat-container").style.display = "block";
+      }
+    }
+  }
+
+  function onFileUpload(event) {
+    var fileName = event.target.files[0].name;
+    document.getElementById('file-name').innerText = fileName;
+    document.getElementById('file-input-label').innerText = '';
+
+  }
+  // Bind the sendUserInput function to the click event of the send button
+  document.getElementById('send-button').addEventListener('click', sendUserInput);
+  document.getElementById('file-select').addEventListener('change', onFileUpload);
+  document.getElementById('upload-button').addEventListener('click', sendUserInputFile);
+</script>
+
+</html>
